@@ -1,0 +1,73 @@
+2021-10-23 19:18:40,636 loglevel=INFO   logger=app.utils log_requests() L43   rid=HXQ7OJ start request path=/redoc
+2021-10-23 19:18:40,636 loglevel=INFO   logger=app.utils log_requests() L51   rid=HXQ7OJ completed_in=0.00ms status_code=200
+2021-10-23 19:18:42,150 loglevel=INFO   logger=app.utils log_requests() L43   rid=C52PXD start request path=/api/v1/openapi.json
+2021-10-23 19:18:42,173 loglevel=INFO   logger=app.utils log_requests() L51   rid=C52PXD completed_in=22.00ms status_code=200
+2021-10-23 21:05:05,201 loglevel=INFO   logger=app.utils log_requests() L44   rid=0TBDR6 start request path=/redoc
+2021-10-23 21:05:05,211 loglevel=INFO   logger=app.utils log_requests() L44   rid=LYUBR3 start request path=/docs
+2021-10-23 21:05:05,215 loglevel=INFO   logger=app.utils log_requests() L52   rid=0TBDR6 completed_in=4.00ms status_code=200
+2021-10-23 21:05:05,219 loglevel=INFO   logger=app.utils log_requests() L52   rid=LYUBR3 completed_in=6.00ms status_code=200
+2021-10-23 21:05:08,105 loglevel=INFO   logger=app.utils log_requests() L44   rid=ZYWIVU start request path=/api/v1/openapi.json
+2021-10-23 21:05:08,116 loglevel=INFO   logger=app.utils log_requests() L52   rid=ZYWIVU completed_in=10.00ms status_code=200
+2021-10-23 21:05:34,353 loglevel=INFO   logger=app.utils log_requests() L44   rid=GL9CG0 start request path=/api/v1/payment/hello
+2021-10-23 21:05:34,354 loglevel=INFO   logger=app.utils log_requests() L52   rid=GL9CG0 completed_in=0.00ms status_code=200
+2021-10-23 21:05:45,205 loglevel=INFO   logger=app.utils log_requests() L44   rid=LUQ8IY start request path=/api/v1/payment/routine/list
+2021-10-23 21:05:45,219 loglevel=ERROR  logger=app.utils setExcMessage() L60   -------------------------------------------
+2021-10-23 21:05:45,220 loglevel=ERROR  logger=app.utils setExcMessage() L61   ExcMessage:
+2021-10-23 21:05:45,220 loglevel=ERROR  logger=app.utils setExcMessage() L62   90::Rollback: Db transaction failed...
+2021-10-23 21:05:45,221 loglevel=ERROR  logger=app.utils setExcMessage() L63   -------------------------------------------
+2021-10-23 21:05:45,223 loglevel=INFO   logger=app.utils routine_list() L42   <starlette.responses.JSONResponse object at 0x0000021DE454C588>
+2021-10-23 21:05:45,224 loglevel=INFO   logger=app.utils log_requests() L52   rid=LUQ8IY completed_in=18.00ms status_code=500
+2021-10-23 21:08:29,480 loglevel=INFO   logger=app.utils log_requests() L44   rid=OEKBHD start request path=/api/v1/payment/routine/list
+2021-10-23 21:08:29,483 loglevel=ERROR  logger=app.utils setExcMessage() L60   -------------------------------------------
+2021-10-23 21:08:29,484 loglevel=ERROR  logger=app.utils setExcMessage() L61   ExcMessage:
+2021-10-23 21:08:29,484 loglevel=ERROR  logger=app.utils setExcMessage() L62   90::Rollback: Db transaction failed...
+2021-10-23 21:08:29,484 loglevel=ERROR  logger=app.utils setExcMessage() L63   -------------------------------------------
+2021-10-23 21:08:29,485 loglevel=INFO   logger=app.utils routine_list() L42   <starlette.responses.JSONResponse object at 0x000001C712337DC8>
+2021-10-23 21:08:29,485 loglevel=INFO   logger=app.utils log_requests() L52   rid=OEKBHD completed_in=5.02ms status_code=500
+2021-10-23 21:08:54,820 loglevel=INFO   logger=app.utils log_requests() L44   rid=BUL5CE start request path=/api/v1/payment/routine/list
+2021-10-23 21:08:54,828 loglevel=ERROR  logger=app.utils setExcMessage() L60   -------------------------------------------
+2021-10-23 21:08:54,830 loglevel=ERROR  logger=app.utils setExcMessage() L61   ExcMessage:
+2021-10-23 21:08:54,832 loglevel=ERROR  logger=app.utils setExcMessage() L62   local variable 'totalRows' referenced before assignment
+2021-10-23 21:08:54,834 loglevel=ERROR  logger=app.utils setExcMessage() L63   -------------------------------------------
+2021-10-23 21:08:54,836 loglevel=INFO   logger=app.utils routine_list() L42   <starlette.responses.JSONResponse object at 0x0000028460665F48>
+2021-10-23 21:08:54,837 loglevel=INFO   logger=app.utils log_requests() L52   rid=BUL5CE completed_in=15.00ms status_code=500
+2021-10-23 21:10:24,221 loglevel=INFO   logger=app.utils log_requests() L44   rid=FS5SWD start request path=/api/v1/payment/routine/list
+2021-10-23 21:10:24,228 loglevel=ERROR  logger=app.utils setExcMessage() L60   -------------------------------------------
+2021-10-23 21:10:24,228 loglevel=ERROR  logger=app.utils setExcMessage() L61   ExcMessage:
+2021-10-23 21:10:24,229 loglevel=ERROR  logger=app.utils setExcMessage() L62   90::Rollback: Db transaction failed, Textual SQL expression '1=1' should be explicitly declared as text('1=1')
+2021-10-23 21:10:24,229 loglevel=ERROR  logger=app.utils setExcMessage() L63   -------------------------------------------
+2021-10-23 21:10:24,230 loglevel=INFO   logger=app.utils routine_list() L42   <starlette.responses.JSONResponse object at 0x000001915F7D7E48>
+2021-10-23 21:10:24,230 loglevel=INFO   logger=app.utils log_requests() L52   rid=FS5SWD completed_in=6.99ms status_code=500
+2021-10-23 21:11:25,482 loglevel=INFO   logger=app.utils log_requests() L44   rid=PCHFCF start request path=/api/v1/payment/routine/list
+2021-10-23 21:11:25,490 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [], 'currentPage': 1, 'currentshow': 15, 'totalRow': 0, 'totalPage': 0}
+2021-10-23 21:11:25,492 loglevel=INFO   logger=app.utils log_requests() L52   rid=PCHFCF completed_in=8.70ms status_code=200
+2021-10-23 21:12:37,962 loglevel=INFO   logger=app.utils log_requests() L44   rid=GV659L start request path=/api/v1/payment/routine/list
+2021-10-23 21:12:37,973 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}], 'currentPage': 1, 'currentshow': 15, 'totalRow': 1, 'totalPage': 1}
+2021-10-23 21:12:37,974 loglevel=INFO   logger=app.utils log_requests() L52   rid=GV659L completed_in=10.99ms status_code=200
+2021-10-23 21:14:04,063 loglevel=INFO   logger=app.utils log_requests() L44   rid=FWFC2R start request path=/api/v1/payment/routine/list
+2021-10-23 21:14:04,075 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}, {'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 1, 'currentshow': 15, 'totalRow': 2, 'totalPage': 1}
+2021-10-23 21:14:04,079 loglevel=INFO   logger=app.utils log_requests() L52   rid=FWFC2R completed_in=14.99ms status_code=200
+2021-10-23 21:14:18,259 loglevel=INFO   logger=app.utils log_requests() L44   rid=61IBFX start request path=/api/v1/payment/routine/list
+2021-10-23 21:14:18,266 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}, {'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 1, 'currentshow': 1, 'totalRow': 2, 'totalPage': 1}
+2021-10-23 21:14:18,269 loglevel=INFO   logger=app.utils log_requests() L52   rid=61IBFX completed_in=8.00ms status_code=200
+2021-10-23 21:14:28,370 loglevel=INFO   logger=app.utils log_requests() L44   rid=GXL3SS start request path=/api/v1/payment/routine/list
+2021-10-23 21:14:28,376 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}, {'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 1, 'currentshow': 1, 'totalRow': 2, 'totalPage': 1}
+2021-10-23 21:14:28,378 loglevel=INFO   logger=app.utils log_requests() L52   rid=GXL3SS completed_in=7.02ms status_code=200
+2021-10-23 22:16:14,466 loglevel=INFO   logger=app.utils log_requests() L44   rid=3JI7VN start request path=/api/v1/payment/routine/list
+2021-10-23 22:16:14,526 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}, {'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 1, 'currentshow': 1, 'totalRow': 2, 'totalPage': 1}
+2021-10-23 22:16:14,528 loglevel=INFO   logger=app.utils log_requests() L52   rid=3JI7VN completed_in=61.01ms status_code=200
+2021-10-23 22:16:32,537 loglevel=INFO   logger=app.utils log_requests() L44   rid=YFM7RJ start request path=/api/v1/payment/routine/list
+2021-10-23 22:16:32,544 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}], 'currentPage': 1, 'currentshow': 1, 'totalRow': 2, 'totalPage': 2}
+2021-10-23 22:16:32,545 loglevel=INFO   logger=app.utils log_requests() L52   rid=YFM7RJ completed_in=8.00ms status_code=200
+2021-10-23 22:17:58,955 loglevel=INFO   logger=app.utils log_requests() L44   rid=ZBLPY0 start request path=/api/v1/payment/routine/list
+2021-10-23 22:17:58,960 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 2, 'currentshow': 1, 'totalRow': 2, 'totalPage': 2}
+2021-10-23 22:17:58,962 loglevel=INFO   logger=app.utils log_requests() L52   rid=ZBLPY0 completed_in=6.98ms status_code=200
+2021-10-24 14:55:21,847 loglevel=INFO   logger=app.utils log_requests() L44   rid=SJ143N start request path=/api/v1/payment/routine/list
+2021-10-24 14:55:21,935 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 2, 'currentshow': 1, 'totalRow': 2, 'totalPage': 2}
+2021-10-24 14:55:21,941 loglevel=INFO   logger=app.utils log_requests() L52   rid=SJ143N completed_in=92.99ms status_code=200
+2021-10-24 14:55:40,524 loglevel=INFO   logger=app.utils log_requests() L44   rid=CJJA7W start request path=/api/v1/payment/routine/list
+2021-10-24 14:55:40,530 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [], 'currentPage': 1, 'currentshow': 15, 'totalRow': 0, 'totalPage': 0}
+2021-10-24 14:55:40,533 loglevel=INFO   logger=app.utils log_requests() L52   rid=CJJA7W completed_in=8.01ms status_code=200
+2021-10-24 14:55:46,854 loglevel=INFO   logger=app.utils log_requests() L44   rid=RXUMCN start request path=/api/v1/payment/routine/list
+2021-10-24 14:55:46,930 loglevel=INFO   logger=app.utils routine_list() L42   {'response_code': '00', 'response_msg': 'OK', 'response_data': [{'id': 1, 'name': 'Kontrakan', 'amount': 850000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar kontrakkan bulanan', 'created_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116), 'updated_at': datetime.datetime(2021, 10, 23, 21, 12, 34, 818116)}, {'id': 2, 'name': 'PDAM Air', 'amount': 50000, 'period_unit': 'M', 'period_value': 10, 'is_active': 'T', 'description': 'Bayar PDAM Air', 'created_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853), 'updated_at': datetime.datetime(2021, 10, 23, 21, 14, 0, 404853)}], 'currentPage': 1, 'currentshow': 15, 'totalRow': 2, 'totalPage': 1}
+2021-10-24 14:55:46,932 loglevel=INFO   logger=app.utils log_requests() L52   rid=RXUMCN completed_in=78.00ms status_code=200

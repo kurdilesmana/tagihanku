@@ -1,0 +1,117 @@
+from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
+from datetime import datetime
+
+from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
+
+from app.db.base_class import Base
+from app.db import database
+from app.models import models
+from app.utils import RC_CODE
+
+ModelType = TypeVar("ModelType", bound=Base)
+CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
+UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
+
+
+class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
+    def __init__(self, model: Type[ModelType]):
+        """
+        CRUD object with default methods to Create, Read, Update, Delete (CRUD).
+
+        **Parameters**
+
+        * `model`: A SQLAlchemy model class
+        * `schema`: A Pydantic model (schema) class
+        """
+        self.model = model
+        self.table = model.__table__
+
+    async def get(self, id: Any) -> Optional[ModelType]:
+        query = self.table.select().where(self.model.id == id)
+        data = await database.fetch_one(query=query)
+        if not data:
+            return None
+        return self.model(**data)
+
+    async def get_all(self, *, skip: int = 0, limit: int = 100) -> List[ModelType]:
+        query = self.table.select().offset(skip).limit(limit)
+        datalist = await database.fetch_all(query=query)
+        return [self.model(**data) for data in datalist]
+
+    async def create(self, *, obj_in: Union[CreateSchemaType, Dict[str, Any]]) -> ModelType:
+        db = await database.transaction()
+        try:
+            if isinstance(obj_in, dict):
+                obj_in_data = obj_in
+            else:
+                obj_in_data = obj_in.dict(exclude_unset=True)
+            query = self.table.insert().values(**obj_in_data)
+            id = await database.execute(query=query)
+        except Exception as e:
+            await db.rollback()
+            raise Exception(f"90::{RC_CODE['90']}, {e}")
+        else:
+            await db.commit()
+        # --
+
+        return self.model(**{
+            "id": id,
+            **obj_in_data
+        })
+    # --
+
+    async def update(
+        self, *, db_obj: ModelType, obj_in: Union[UpdateSchemaType, Dict[str, Any]]
+    ) -> ModelType:
+        db = await database.transaction()
+        try:
+            update_data = jsonable_encoder(db_obj)
+            if isinstance(obj_in, dict):
+                update_data.update(obj_in)
+            else:
+                update_data.update(obj_in.dict(exclude_unset=True))
+            # --
+
+            # convert str to datetime
+            for key in ['updated_at', 'created_at']:
+                if isinstance(update_data.get(key), str):
+                    update_data[key] = datetime.strptime(update_data[key], "%Y-%m-%dT%H:%M:%S.%f")
+                # --
+            # --
+
+            query = (
+                self.table
+                .update()
+                .where(db_obj.id == self.table.c.id)
+                .values(**update_data)
+                .returning(self.table.c.id)
+            )
+            await database.execute(query=query)
+        except Exception as e:
+            await db.rollback()
+            raise Exception(f"90::{RC_CODE['90']}, {e}")
+        else:
+            await db.commit()
+        # --
+
+        return self.model(**{
+            "id": db_obj.id,
+            **update_data
+        })
+    # --
+
+    async def delete(self, *, id: int) -> Any:
+        db = await database.transaction()
+        try:
+            query = self.table.delete().where(id == self.table.c.id)
+            delete = await database.execute(query=query)
+        except Exception as e:
+            await db.rollback()
+            raise Exception(f"90::{RC_CODE['90']}, {e}")
+        else:
+            await db.commit()
+        # --
+
+        return delete
+    # --

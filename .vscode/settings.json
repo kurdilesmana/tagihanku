@@ -1,0 +1,16 @@
+{
+	"python.formatting.provider": "autopep8",
+	"python.formatting.autopep8Args": [
+		"--max-line-length=200"
+	],
+	"python.linting.enabled": true,
+	"editor.fontSize": 11,
+	"editor.tabSize": 4,
+	"editor.formatOnSave": true,
+	"python.analysis.extraPaths": [
+		"D:\\Project\\env\\src\\tagihanku\\app"
+	],
+	"python.autoComplete.extraPaths": [
+		"D:\\Project\\env\\src\\tagihanku\\app"
+	]
+}
