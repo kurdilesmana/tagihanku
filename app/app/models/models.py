@@ -17,6 +17,7 @@ class Bill(Base):
     total_amount = Column(BigInteger, nullable=False)
     detail_type = Column(String(1))
     description = Column(String(255))
+    status = Column(String(1))
     created_at = Column(DateTime, server_default=text("now()"))
     updated_at = Column(DateTime, server_default=text("now()"))
 
@@ -38,8 +39,8 @@ class BillDetail(Base):
 # --
 
 
-class PaymentRoutine(Base):
-    __tablename__ = 'payment_routine'
+class Routine(Base):
+    __tablename__ = 'routines'
 
     id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
     name = Column(String(100), nullable=False)
@@ -51,15 +52,15 @@ class PaymentRoutine(Base):
     created_at = Column(DateTime, server_default=text("now()"))
     updated_at = Column(DateTime, server_default=text("now()"))
 
-    paymentroutine = relationship("PaymentHistory")
+    Routine = relationship("RoutineHistory")
 # --
 
 
-class PaymentHistory(Base):
-    __tablename__ = 'payment_history'
+class RoutineHistory(Base):
+    __tablename__ = 'routine_history'
 
     id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    bill_id = Column(Integer, ForeignKey("payment_routine.id", ondelete="CASCADE"))
+    bill_id = Column(Integer, ForeignKey("routines.id", ondelete="CASCADE"))
     payment_date = Column(DateTime, nullable=False)
     amount = Column(BigInteger, nullable=False)
     receipt = Column(Text)
