@@ -8,13 +8,13 @@ from starlette import status
 logging.config.fileConfig('app/logging.conf', disable_existing_loggers=False)
 
 # logger file
-fileHandler = logging.FileHandler(f'app/logs/{datetime.strftime(datetime.now(), "%Y-%m-%d")}.log', 'a')
+# fileHandler = logging.FileHandler(f'app/logs/{datetime.strftime(datetime.now(), "%Y-%m-%d")}.log', 'a')
 logFormatter = logging.Formatter('%(asctime)s loglevel=%(levelname)-6s logger=%(name)s %(funcName)s() L%(lineno)-4d %(message)s')
-fileHandler.setFormatter(logFormatter)
-fileHandler.setLevel(logging.DEBUG)
+# fileHandler.setFormatter(logFormatter)
+# fileHandler.setLevel(logging.DEBUG)
 
 logger = logging.getLogger(__name__)
-logger.addHandler(fileHandler)
+# logger.addHandler(fileHandler)
 
 RC_CODE = {
     "01": "Nasabah tidak ditemukan.",
