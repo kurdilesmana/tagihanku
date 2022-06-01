@@ -5,6 +5,7 @@ from fastapi import APIRouter, Body
 from starlette import status
 
 from app import crud, utils, schemas
+from app.config import settings
 
 router = APIRouter()
 
