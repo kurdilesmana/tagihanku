@@ -8,10 +8,14 @@ class Settings(BaseSettings):
     prefix: str = "/api/v1"
 
     # Database Settings
-    POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "kurdiansyah1995"
-    POSTGRES_SERVER: str = "localhost:5432"
-    POSTGRES_DB: str = "app"
+    # POSTGRES_USER: str = "postgres"
+    # POSTGRES_PASSWORD: str = "kurdiansyah1995"
+    # POSTGRES_SERVER: str = "localhost:5432"
+    # POSTGRES_DB: str = "app"
+    POSTGRES_USER: str = "ppybttvixunchd"
+    POSTGRES_PASSWORD: str = "6dbc90ba9d51af753fc696df82f6b7fef61167531742e7d62cdba2ced4421fd2"
+    POSTGRES_SERVER: str = "postgresql-contoured-50283:5432"
+    POSTGRES_DB: str = "dc2r0mln1dkrmh"
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
