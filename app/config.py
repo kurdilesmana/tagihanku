@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # POSTGRES_DB: str = "app"
     POSTGRES_USER: str = "ppybttvixunchd"
     POSTGRES_PASSWORD: str = "6dbc90ba9d51af753fc696df82f6b7fef61167531742e7d62cdba2ced4421fd2"
-    POSTGRES_SERVER: str = "postgresql-contoured-50283:5432"
+    POSTGRES_SERVER: str = "ec2-34-197-84-74.compute-1.amazonaws.com:5432"
     POSTGRES_DB: str = "dc2r0mln1dkrmh"
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
