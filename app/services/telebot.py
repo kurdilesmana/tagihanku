@@ -31,7 +31,7 @@ It works like this:
     - `b` - to see a button above the inline results to switch back to a private chat with the bot
 """
 
-TOKEN = "5389312760:AAFUZri4RL91vLr2asgrG0bBSG1G852j1Eo"
+TOKEN = "5458637763:AAGKDJTRPARSHqx1kJ0uSp3wUSbgzTDN3oM"
 message_with_inline_keyboard = None
 
 
@@ -44,27 +44,27 @@ async def on_chat_message(msg):
 
     if msg['text'].lower() == '/start':
         markup = InlineKeyboardMarkup(inline_keyboard=[
-            InlineKeyboardButton(text='Callback - show notification', callback_data='notification')
+            [InlineKeyboardButton(text='Callback - show notification', callback_data='notification')]
         ])
 
         global message_with_inline_keyboard
         message_with_inline_keyboard = await bot.sendMessage(chat_id, 'Inline keyboard with various buttons', reply_markup=markup)
-    else:
-        command = msg['text'][-1:].lower()
-        if command == 'c':
-            markup = ReplyKeyboardMarkup(keyboard=[
-                ['Plain text', KeyboardButton(text='Text only')],
-                [dict(text='Phone', request_contact=True), KeyboardButton(
-                    text='Location', request_location=True)],
-            ])
-            await bot.sendMessage(chat_id, 'Custom keyboard with various buttons', reply_markup=markup)
-        elif command == 'h':
-            markup = ReplyKeyboardRemove()
-            await bot.sendMessage(chat_id, 'Hide custom keyboard', reply_markup=markup)
-        elif command == 'f':
-            markup = ForceReply()
-            await bot.sendMessage(chat_id, 'Force reply', reply_markup=markup)
     # --
+
+    command = msg['text'][-1:].lower()
+    if command == 'c':
+        markup = ReplyKeyboardMarkup(keyboard=[
+            ['Plain text', KeyboardButton(text='Text only')],
+            [dict(text='Phone', request_contact=True), KeyboardButton(
+                text='Location', request_location=True)],
+        ])
+        await bot.sendMessage(chat_id, 'Custom keyboard with various buttons', reply_markup=markup)
+    elif command == 'h':
+        markup = ReplyKeyboardRemove()
+        await bot.sendMessage(chat_id, 'Hide custom keyboard', reply_markup=markup)
+    elif command == 'f':
+        markup = ForceReply()
+        await bot.sendMessage(chat_id, 'Force reply', reply_markup=markup)
 
 
 async def on_callback_query(msg):
