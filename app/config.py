@@ -30,6 +30,8 @@ class Settings(BaseSettings):
             path=f"/{values.get('POSTGRES_DB') or ''}",
         )
     # --
+
+    TOKEN = "5458637763:AAGKDJTRPARSHqx1kJ0uSp3wUSbgzTDN3oM"
 # --
 
 

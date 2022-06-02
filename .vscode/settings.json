@@ -8,9 +8,9 @@
 	"editor.tabSize": 4,
 	"editor.formatOnSave": true,
 	"python.analysis.extraPaths": [
-		"D:\\Project\\env\\src\\tagihanku\\app"
+		"D:\\Project\\env\\src\\tagihanku"
 	],
 	"python.autoComplete.extraPaths": [
-		"D:\\Project\\env\\src\\tagihanku\\app"
+		"D:\\Project\\env\\src\\tagihanku"
 	]
 }

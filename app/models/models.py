@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, Float, Numeric, BigInteger, Text
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, Float, Numeric, BigInteger, Text, column
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.schema import ForeignKey
@@ -65,4 +65,14 @@ class RoutineHistory(Base):
     amount = Column(BigInteger, nullable=False)
     receipt = Column(Text)
     description = Column(String(255))
+# --
+
+
+class UserChat(Base):
+    __tablename__ = 'user_chat'
+
+    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    username = Column(String(50), nullable=False)
+    chat_id = Column(String(20))
+    is_active = Column(String(1), server_default=text("'F'"))
 # --

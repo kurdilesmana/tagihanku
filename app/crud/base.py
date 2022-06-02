@@ -40,20 +40,12 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         return [self.model(**data) for data in datalist]
 
     async def create(self, *, obj_in: Union[CreateSchemaType, Dict[str, Any]]) -> ModelType:
-        db = await database.transaction()
-        try:
-            if isinstance(obj_in, dict):
-                obj_in_data = obj_in
-            else:
-                obj_in_data = obj_in.dict(exclude_unset=True)
-            query = self.table.insert().values(**obj_in_data)
-            id = await database.execute(query=query)
-        except Exception as e:
-            await db.rollback()
-            raise Exception(f"90::{RC_CODE['90']}, {e}")
+        if isinstance(obj_in, dict):
+            obj_in_data = obj_in
         else:
-            await db.commit()
-        # --
+            obj_in_data = obj_in.dict(exclude_unset=True)
+        query = self.table.insert().values(**obj_in_data)
+        id = await database.execute(query=query)
 
         return self.model(**{
             "id": id,
@@ -64,36 +56,28 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     async def update(
         self, *, db_obj: ModelType, obj_in: Union[UpdateSchemaType, Dict[str, Any]]
     ) -> ModelType:
-        db = await database.transaction()
-        try:
-            update_data = jsonable_encoder(db_obj)
-            if isinstance(obj_in, dict):
-                update_data.update(obj_in)
-            else:
-                update_data.update(obj_in.dict(exclude_unset=True))
-            # --
-
-            # convert str to datetime
-            for key in ['updated_at', 'created_at']:
-                if isinstance(update_data.get(key), str):
-                    update_data[key] = datetime.strptime(update_data[key], "%Y-%m-%dT%H:%M:%S.%f")
-                # --
-            # --
-
-            query = (
-                self.table
-                .update()
-                .where(db_obj.id == self.table.c.id)
-                .values(**update_data)
-                .returning(self.table.c.id)
-            )
-            await database.execute(query=query)
-        except Exception as e:
-            await db.rollback()
-            raise Exception(f"90::{RC_CODE['90']}, {e}")
+        update_data = jsonable_encoder(db_obj)
+        if isinstance(obj_in, dict):
+            update_data.update(obj_in)
         else:
-            await db.commit()
+            update_data.update(obj_in.dict(exclude_unset=True))
         # --
+
+        # convert str to datetime
+        for key in ['updated_at', 'created_at']:
+            if isinstance(update_data.get(key), str):
+                update_data[key] = datetime.strptime(update_data[key], "%Y-%m-%dT%H:%M:%S.%f")
+            # --
+        # --
+
+        query = (
+            self.table
+            .update()
+            .where(db_obj.id == self.table.c.id)
+            .values(**update_data)
+            .returning(self.table.c.id)
+        )
+        await database.execute(query=query)
 
         return self.model(**{
             "id": db_obj.id,
@@ -102,16 +86,8 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     # --
 
     async def delete(self, *, id: int) -> Any:
-        db = await database.transaction()
-        try:
-            query = self.table.delete().where(id == self.table.c.id)
-            delete = await database.execute(query=query)
-        except Exception as e:
-            await db.rollback()
-            raise Exception(f"90::{RC_CODE['90']}, {e}")
-        else:
-            await db.commit()
-        # --
+        query = self.table.delete().where(id == self.table.c.id)
+        delete = await database.execute(query=query)
 
         return delete
     # --

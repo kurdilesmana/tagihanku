@@ -1,14 +1,108 @@
+from email import message
 import json
-from typing import Any
+from typing import Any, Optional
 from fastapi import APIRouter, Body
-from sqlalchemy.log import echo_property
+
+import telepot
+import telepot.aio
 
 from app import crud, utils, schemas
+from app.db import database
 
 router = APIRouter()
+TOKEN = "5458637763:AAGKDJTRPARSHqx1kJ0uSp3wUSbgzTDN3oM"
+bot = telepot.aio.Bot(TOKEN)
 
 
 @router.get("/hello")
 async def hello_world() -> Any:
     return "Hello World!"
+# --
+
+
+@router.post("/ireport/status", response_model=schemas.BaseResponse)
+async def status(
+    username: str = Body(..., embed=True)
+) -> Any:
+    transaction = await database.transaction()
+    try:
+        userchat = await crud.userchat.get_by_username(username)
+        if not userchat:
+            raise Exception("99::Username not found!")
+        # --
+
+        response = {
+            "response_code": "00",
+            "response_msg": userchat,
+        }
+    except Exception as e:
+        response = utils.setExcMessage(str(e))
+        await transaction.rollback()
+    else:
+        await transaction.commit()
+    # --
+
+    utils.logger.info(response)
+
+    return response
+# --
+
+
+@router.post("/ireport/register", response_model=schemas.BaseResponse)
+async def register(
+    username: str = Body(..., embed=True)
+) -> Any:
+    transaction = await database.transaction()
+    try:
+        oUserchat = await crud.userchat.get_by_username(username)
+        if not oUserchat:
+            userchat = await crud.userchat.create(obj_in={'username': username, 'is_active': 'F'})
+        else:
+            userchat = await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username})
+        # --
+
+        response = {
+            "response_code": "00",
+            "response_msg": f"Data Behasil Diproses."
+        }
+    except Exception as e:
+        response = utils.setExcMessage(str(e))
+        await transaction.rollback()
+    else:
+        await transaction.commit()
+    # --
+
+    utils.logger.info(response)
+
+    return response
+# --
+
+
+@router.post("/ireport/notification", response_model=schemas.BaseResponse)
+async def notification(
+    username: str = Body(...),
+    message: Optional[str] = Body('Hello!')
+) -> Any:
+    transaction = await database.transaction()
+    try:
+        userchat = await crud.userchat.get_by_username(username)
+        if not userchat:
+            raise Exception("99::Username not found!")
+        # --
+
+        await bot.sendMessage(userchat.chat_id, message)
+        response = {
+            "response_code": "00",
+            "response_msg": "OK"
+        }
+    except Exception as e:
+        response = utils.setExcMessage(str(e))
+        await transaction.rollback()
+    else:
+        await transaction.commit()
+    # --
+
+    utils.logger.info(response)
+
+    return response
 # --

@@ -31,13 +31,14 @@ It works like this:
     - `b` - to see a button above the inline results to switch back to a private chat with the bot
 """
 
-TOKEN = "5389312760:AAFUZri4RL91vLr2asgrG0bBSG1G852j1Eo"
+TOKEN = "5458637763:AAGKDJTRPARSHqx1kJ0uSp3wUSbgzTDN3oM"
 message_with_inline_keyboard = None
 
 
 async def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     print('Chat:', content_type, chat_type, chat_id)
+    print(msg)
 
     if content_type != 'text':
         return
