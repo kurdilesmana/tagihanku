@@ -33,7 +33,8 @@ async def status(
 
         response = {
             "response_code": "00",
-            "response_msg": userchat,
+            "response_msg": "success",
+            "response_data": userchat
         }
     except Exception as e:
         response = utils.setExcMessage(str(e))
