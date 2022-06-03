@@ -57,9 +57,9 @@ async def register(
     try:
         oUserchat = await crud.userchat.get_by_username(username)
         if not oUserchat:
-            userchat = await crud.userchat.create(obj_in={'username': username, 'is_active': 'F'})
+            await crud.userchat.create(obj_in={'username': username, 'is_active': 'F'})
         else:
-            userchat = await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username})
+            await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username})
         # --
 
         response = {
