@@ -1,5 +1,5 @@
 import math
-from typing import Optional
+from typing import List, Optional
 from sqlalchemy import select, desc, asc, func, or_, and_
 from sqlalchemy.sql.expression import join, table, text
 
@@ -69,6 +69,23 @@ class CRUDUserChat(CRUDBase[UserChat, UserChat, UserChat]):
         # --
 
         return UserChat(**data)
+    # --
+
+    async def get_by_rolecode(self, role: str) -> Optional[List[UserChat]]:
+        _tbl = self.table
+        _col = _tbl.c
+        _cond = (
+            (_col.roleid == role) &
+            (_col.is_active == "F")
+        )
+
+        query = _tbl.select().where(_cond)
+        data = await database.fetch_all(query=query)
+        if not data:
+            return None
+        # --
+
+        return [UserChat(**chatid) for chatid in data]
     # --
 # --
 

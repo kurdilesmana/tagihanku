@@ -87,6 +87,7 @@ async def register(
 
 @router.post("/ireport/notification", response_model=schemas.BaseResponse)
 async def notification(
+    method: str = Body(...),
     username: str = Body(...),
     message: Optional[str] = Body('Hello!')
 ) -> Any:
@@ -97,7 +98,30 @@ async def notification(
             raise Exception("99::Username not found!")
         # --
 
-        await bot.sendMessage(userchat.chat_id, message)
+        userchatlist = None
+        if method.lower() == 'new':
+            userchatlist = await crud.userchat.get_by_rolecode(role='QC')
+            msg = f"[NEW] {message} telah ditambahkan. Terimakasih."
+        elif method.lower() == 'check':
+            userchatlist = await crud.userchat.get_by_rolecode(role='MK')
+            msg = f"[NEW] {message} telah ditambahkan, pengajuan sudah dilakukan proses checking QC. Terimakasih."
+        elif method.lower() == 'approve':
+            userchatlist = await crud.userchat.get_by_rolecode(role='KU')
+            msg = f"[NEW] {message} telah ditambahkan, pengajuan sudah dilakukan proses approve Pimpinan. Terimakasih."
+        # --
+
+        # send message
+        if method.lower() != "new":
+            await bot.sendMessage(userchat.chat_id, message)
+        # --
+
+        if userchatlist:
+            for chat in userchatlist:
+                await bot.sendMessage(chat.chat_id, msg)
+                # --
+            # --
+        # --
+
         response = {
             "response_code": "00",
             "response_msg": "OK"
