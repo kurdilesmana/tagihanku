@@ -117,8 +117,7 @@ async def notification(
 
         # send message
         if method.lower() != "new":
-            msg = f"[UPDATE] {message} sudah dilakukan proses {status}. Terimakasih."
-            await bot.sendMessage(userchat.chat_id, msg)
+            await bot.sendMessage(userchat.chat_id, f"[UPDATE] {message} sudah dilakukan proses {status}. Terimakasih.")
         # --
 
         utils.logger.info(userchatlist)
