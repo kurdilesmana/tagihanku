@@ -117,6 +117,7 @@ async def notification(
 
         if userchatlist:
             for chat in userchatlist:
+                print(f"{chat.username} {chat.chat_id} {msg}")
                 await bot.sendMessage(chat.chat_id, msg)
                 # --
             # --
