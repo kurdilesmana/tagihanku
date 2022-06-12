@@ -76,7 +76,7 @@ class CRUDUserChat(CRUDBase[UserChat, UserChat, UserChat]):
         _col = _tbl.c
         _cond = (
             (_col.roleid == role) &
-            (_col.is_active == "F")
+            (_col.is_active == "T")
         )
 
         query = _tbl.select().where(_cond)
