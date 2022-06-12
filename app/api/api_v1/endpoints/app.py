@@ -22,11 +22,12 @@ async def hello_world() -> Any:
 
 @router.post("/ireport/status", response_model=schemas.BaseResponse)
 async def status(
-    username: str = Body(..., embed=True)
+    username: str = Body(...),
+    userid: str = Body(...)
 ) -> Any:
     transaction = await database.transaction()
     try:
-        userchat = await crud.userchat.get_by_username(username)
+        userchat = await crud.userchat.get_by_username_id(username, userid)
         if not userchat:
             raise Exception("99::Username not found!")
         # --
@@ -57,7 +58,7 @@ async def register(
 ) -> Any:
     transaction = await database.transaction()
     try:
-        oUserchat = await crud.userchat.get_by_userid(userid)
+        oUserchat = await crud.userchat.get_by_username_or_id(username, userid)
         if not oUserchat:
             await crud.userchat.create(obj_in={
                 'username': username, 'is_active': 'F',
