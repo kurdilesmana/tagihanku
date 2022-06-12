@@ -98,21 +98,27 @@ async def notification(
             raise Exception("99::Username not found!")
         # --
 
+        status = ''
         userchatlist = None
         if method.lower() == 'new':
             userchatlist = await crud.userchat.get_by_rolecode(role='QC')
             msg = f"[NEW] {message} telah ditambahkan. Terimakasih."
         elif method.lower() == 'check':
             userchatlist = await crud.userchat.get_by_rolecode(role='MK')
-            msg = f"[NEW] {message} telah ditambahkan, pengajuan sudah dilakukan proses checking QC. Terimakasih."
+            status = "checking QC"
+            msg = f"[NEW] {message} telah ditambahkan, pengajuan sudah dilakukan proses {status}. Terimakasih."
         elif method.lower() == 'approve':
             userchatlist = await crud.userchat.get_by_rolecode(role='KU')
-            msg = f"[NEW] {message} telah ditambahkan, pengajuan sudah dilakukan proses approve Pimpinan. Terimakasih."
+            status = "approve Pimpinan"
+            msg = f"[NEW] {message} telah ditambahkan, pengajuan sudah dilakukan proses {status}. Terimakasih."
+        else:
+            status = "akhir dibagian Keuangan."
         # --
 
         # send message
         if method.lower() != "new":
-            await bot.sendMessage(userchat.chat_id, message)
+            msg = f"[UPDATE] {message} sudah dilakukan proses {status}. Terimakasih."
+            await bot.sendMessage(userchat.chat_id, msg)
         # --
 
         utils.logger.info(userchatlist)
