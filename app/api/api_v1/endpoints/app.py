@@ -51,15 +51,20 @@ async def status(
 
 @router.post("/ireport/register", response_model=schemas.BaseResponse)
 async def register(
-    username: str = Body(..., embed=True)
+    username: str = Body(...),
+    userid: str = Body(...),
+    roleid: str = Body(...)
 ) -> Any:
     transaction = await database.transaction()
     try:
-        oUserchat = await crud.userchat.get_by_username(username)
+        oUserchat = await crud.userchat.get_by_userid(userid)
         if not oUserchat:
-            await crud.userchat.create(obj_in={'username': username, 'is_active': 'F'})
+            await crud.userchat.create(obj_in={
+                'username': username, 'is_active': 'F',
+                'userid': userid, 'roleid': roleid
+            })
         else:
-            await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username})
+            await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username, 'roleid': roleid})
         # --
 
         response = {

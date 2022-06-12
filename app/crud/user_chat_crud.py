@@ -22,6 +22,20 @@ class CRUDUserChat(CRUDBase[UserChat, UserChat, UserChat]):
 
         return UserChat(**data)
     # --
+
+    async def get_by_userid(self, userid: str) -> Optional[UserChat]:
+        _tbl = self.table
+        _col = _tbl.c
+        _cond = (func.lower(_col.userid) == userid.lower())
+
+        query = _tbl.select().where(_cond)
+        data = await database.fetch_one(query=query)
+        if not data:
+            return None
+        # --
+
+        return UserChat(**data)
+    # --
 # --
 
 

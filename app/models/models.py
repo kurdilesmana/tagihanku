@@ -73,6 +73,9 @@ class UserChat(Base):
 
     id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
     username = Column(String(50), nullable=False)
+    userid = Column(String(50), nullable=False)
+    roleid = Column(String(10))
     chat_id = Column(String(20))
     is_active = Column(String(1), server_default=text("'F'"))
+    created_at = Column(DateTime, server_default=text("'now()'"))
 # --

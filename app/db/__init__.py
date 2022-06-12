@@ -4,7 +4,7 @@ from app.config import settings
 
 engine = create_engine(
     settings.SQLALCHEMY_DATABASE_URI,
-    pool_size=10,
+    pool_size=5,
     max_overflow=2,
     pool_recycle=300)
 database = Database(settings.SQLALCHEMY_DATABASE_URI)
