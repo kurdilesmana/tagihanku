@@ -65,7 +65,7 @@ async def register(
                 'userid': userid, 'roleid': roleid
             })
         else:
-            await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username, 'roleid': roleid})
+            await crud.userchat.update(db_obj=oUserchat, obj_in={'username': username, 'userid': userid, 'roleid': roleid})
         # --
 
         response = {
